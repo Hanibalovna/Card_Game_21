@@ -110,12 +110,42 @@ namespace Card_Game_21
                 }
                 Console.WriteLine(lastIndexDeckOfCards);
 
-
             }
 
-            //computer first
-            else
+
+            if (cardPointHuman == 21)
+                Console.WriteLine("Human win");
+
+            else if (cardPointHuman > 21)
             {
+                Console.WriteLine("Game is over");
+                int computerChoice = random.Next(0, 2);
+                //computer should also make decision stop receiving the third card or get one more
+
+                if (computerChoice == 0)
+                {
+                    for (int i = 0; i < computerDeck.Length; i++)
+                    {
+                        computerDeck[i].Face = deckOfCards[i].Face;
+                        computerDeck[i].Suit = deckOfCards[i].Suit;
+
+                        computerDeck[i].cardPoint = deckOfCards[i].cardPoint;
+                        cardPointComputer += deckOfCards[i].cardPoint;
+
+                        lastIndexDeckOfCards = i;
+                        Console.WriteLine($"{computerDeck[i].Suit} {computerDeck[i].Face} {deckOfCards[i].cardPoint}");
+                    }
+                    Console.WriteLine(lastIndexDeckOfCards);
+
+                    if (cardPointComputer == 21)
+                        Console.WriteLine("Computer win");
+                }
+
+
+
+                //computer first
+                else
+                {
                 Console.WriteLine("Computer first");
                 Console.WriteLine($"Computer hand:");
 
