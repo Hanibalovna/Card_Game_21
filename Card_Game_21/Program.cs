@@ -82,5 +82,57 @@ namespace Card_Game_21
                 // Console.WriteLine($"{deckOfCards[i].Suit} {deckOfCards[i].Face} {deckOfCards[i].cardPoint}");
 
             }
+
+
+            Card[] humanDeck = new Card[2];
+            Card[] computerDeck = new Card[2];
+            int cardPointHuman = 0;
+            int cardPointComputer = 0;
+
+            int lastIndexDeckOfCards = 0;
+            int who = random.Next(2);
+            //human first
+            if (who == 1)
+            {
+                Console.WriteLine("Human first");
+                Console.WriteLine($"Human hand:");
+
+                for (int i = 0; i < humanDeck.Length; i++)
+                {
+                    humanDeck[i].Face = deckOfCards[i].Face;
+                    humanDeck[i].Suit = deckOfCards[i].Suit;
+
+                    humanDeck[i].cardPoint = deckOfCards[i].cardPoint;
+                    cardPointHuman += deckOfCards[i].cardPoint;
+                    lastIndexDeckOfCards = i;
+
+                    Console.WriteLine($" { humanDeck[i].Suit} {humanDeck[i].Face} {humanDeck[i].cardPoint}");
+                }
+                Console.WriteLine(lastIndexDeckOfCards);
+
+
+            }
+
+            //computer first
+            else
+            {
+                Console.WriteLine("Computer first");
+                Console.WriteLine($"Computer hand:");
+
+                for (int i = 0; i < computerDeck.Length; i++)
+                {
+                    computerDeck[i].Face = deckOfCards[i].Face;
+                    computerDeck[i].Suit = deckOfCards[i].Suit;
+                    deckOfCards[i].cardPoint = (int)deckOfCards[i].Face;
+
+                    lastIndexDeckOfCards = i;
+                    Console.WriteLine($"{computerDeck[i].Suit} {computerDeck[i].Face} {deckOfCards[i].cardPoint}");
+                }
+                Console.WriteLine(lastIndexDeckOfCards);
+
+                if (cardPointComputer == 21)
+                    Console.WriteLine("Computer win");
+            }
         }
+    }
 }
