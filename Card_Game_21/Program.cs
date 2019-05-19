@@ -54,7 +54,33 @@ namespace Card_Game_21
                 facePoint[(int)Face.Ace] = 11;
             }
 
+            int count = 0;
+            for (int x = 0; x < suitLength; x++)
+            {
+                for (int y = 0; y < faceLenght; y++)
+                {
+                    deckOfCards[count].Suit = (Suit)x;
+                    deckOfCards[count].Face = (Face)y;
+                    deckOfCards[count].cardPoint = facePoint[y];
+                    count++;
+                }
+            }
+            //for (int a = 0; a < deckOfCards.Length; a++)
+            //{
+            //    Console.WriteLine($"{deckOfCards[a].Suit} {deckOfCards[a].Face} {deckOfCards[a].cardPoint}");
+            //}
+            //Console.WriteLine();
 
+            for (int i = deckOfCards.Length - 1; i >= 1; i--)
+            {
+
+                int j = random.Next(i + 1);
+                var temp = deckOfCards[j];
+                deckOfCards[j] = deckOfCards[i];
+                deckOfCards[i] = temp;
+
+                // Console.WriteLine($"{deckOfCards[i].Suit} {deckOfCards[i].Face} {deckOfCards[i].cardPoint}");
+
+            }
         }
-    }
 }
