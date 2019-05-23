@@ -31,7 +31,6 @@ namespace Card_Game_21
     }
    
 
-
     class Program
     {
         static void Main(string[] args)
