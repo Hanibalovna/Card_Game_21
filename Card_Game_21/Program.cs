@@ -20,11 +20,15 @@ namespace Card_Game_21
         public Suit Suit;
         public Face Face;
         public int CardPoint;
+    }
+    struct Deck
+    {
+        public Card[] Cards;
 
-        public Card[] Cards(Card[] arr)
+        public Card[] HandCards(Card[] cards)
         {
-            Card[] arrCopy = new Card[arr.Length + 1];
-            Array.Copy(arr, 0, arrCopy, 0, arrCopy.Length - 1);
+            Card[] arrCopy = new Card[cards.Length + 1];
+            Array.Copy(cards, 0, arrCopy, 0, arrCopy.Length - 1);
 
             return arrCopy;
         }
@@ -38,8 +42,7 @@ namespace Card_Game_21
             Random random = new Random();
             int suitLength = Enum.GetNames(typeof(Suit)).Length;
             int faceLenght = Enum.GetNames(typeof(Face)).Length;
-            Card card = new Card();
-            Card[] deckOfCards =card.Cards(new Card[suitLength * faceLenght]);
+            Card[] deckOfCards = new Card[suitLength * faceLenght];
             int[] facePoint = new int[deckOfCards.Length];
             for (int y = 0; y < faceLenght; y++)
             {
@@ -74,6 +77,14 @@ namespace Card_Game_21
             for (int i = 0; i < deckOfCards.Length; i++)
             {
                 Console.WriteLine($"{deckOfCards[i].Suit} {deckOfCards[i].Face} {deckOfCards[i].CardPoint}");
+            }
+            Console.WriteLine();
+            Card[] cards = new Card[2];
+            Deck deck = new Deck();
+            deck.HandCards(cards);
+            for (int i = 0; i < cards.Length; i++)
+            {
+                Console.WriteLine($"{cards[i].Suit} {cards[i].Face} {cards[i].CardPoint}");
             }
         }
     }
