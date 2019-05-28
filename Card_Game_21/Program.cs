@@ -23,27 +23,14 @@ namespace Card_Game_21
     }
     struct Deck
     {
-        public Card[] Cards;
+        public Card[] DeckOfCards;
 
-        public Card[] HandCards(Card[] cards)
+        public void GenerateDeck()
         {
-            Card[] arrCopy = new Card[cards.Length + 1];
-            Array.Copy(cards, 0, arrCopy, 0, arrCopy.Length - 1);
-
-            return arrCopy;
-        }
-    }
-   
-
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Random random = new Random();
             int suitLength = Enum.GetNames(typeof(Suit)).Length;
             int faceLenght = Enum.GetNames(typeof(Face)).Length;
-            Card[] deckOfCards = new Card[suitLength * faceLenght];
-            int[] facePoint = new int[deckOfCards.Length];
+            Card[] DeckOfCards = new Card[suitLength * faceLenght];
+            int[] facePoint = new int[DeckOfCards.Length];
             for (int y = 0; y < faceLenght; y++)
             {
                 facePoint[(int)Face.Jack] = 2;
@@ -61,31 +48,53 @@ namespace Card_Game_21
             {
                 for (int y = 0; y < faceLenght; y++)
                 {
-                    deckOfCards[count].Suit = (Suit)x;
-                    deckOfCards[count].Face = (Face)y;
-                    deckOfCards[count].CardPoint = facePoint[y];
+                    DeckOfCards[count].Suit = (Suit)x;
+                    DeckOfCards[count].Face = (Face)y;
+                    DeckOfCards[count].CardPoint = facePoint[y];
                     count++;
                 }
             }
-            for (int i = deckOfCards.Length - 1; i >= 1; i--)
+        }
+        public void ShuffleDeck()
+        {
+            for (int i = DeckOfCards.Length - 1; i >= 1; i--)
             {
+                Random random = new Random();
                 int j = random.Next(i + 1);
-                var temp = deckOfCards[j];
-                deckOfCards[j] = deckOfCards[i];
-                deckOfCards[i] = temp;
+                var temp = DeckOfCards[j];
+                DeckOfCards[j] = DeckOfCards[i];
+                DeckOfCards[i] = temp;
             }
-            for (int i = 0; i < deckOfCards.Length; i++)
+        }
+        public void PrintDeck()
+        {
+            for (int i = 0; i<DeckOfCards.Length; i++) 
             {
-                Console.WriteLine($"{deckOfCards[i].Suit} {deckOfCards[i].Face} {deckOfCards[i].CardPoint}");
+                Console.WriteLine($"{DeckOfCards[i].Suit} {DeckOfCards[i].Face} {DeckOfCards[i].CardPoint}");
             }
-            Console.WriteLine();
-            Card[] cards = new Card[2];
-            Deck deck = new Deck();
-            deck.HandCards(cards);
-            for (int i = 0; i < cards.Length; i++)
-            {
-                Console.WriteLine($"{cards[i].Suit} {cards[i].Face} {cards[i].CardPoint}");
-            }
+}
+
+    }
+    struct Hand
+    {
+        public Card[] Cards;
+        public Hand(Card[] cards)
+        {
+            Cards = cards;
+        }
+        public void HandCards(Card card)
+        {
+            Card[] arrHand = new Card[Cards.Length + 1];
+            Array.Copy(Cards, 0, arrHand, 0, arrHand.Length - 1);
+        }
+    }
+   
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+          
         }
     }
 }
