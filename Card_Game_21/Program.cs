@@ -20,23 +20,19 @@ namespace Card_Game_21
         public Suit Suit;
         public Face Face;
         public int CardPoint;
-        public Card _Card;
-        public Card(Card card)
-        {
-            _Card = card;
-        }
+        public Card CardOne;
     }
     class Deck
     {
         public Card[] DeckOfCards;
-        public int Count;
-
+        public int Count = 0;
         public void GenerateDeck()
         {
             int suitLength = Enum.GetNames(typeof(Suit)).Length;
             int faceLenght = Enum.GetNames(typeof(Face)).Length;
             Card[] DeckOfCards = new Card[suitLength * faceLenght];
-            int[] facePoint = new int[DeckOfCards.Length];
+            int[] facePoint = new int[DeckOfCards.Length];//нужно ли перебирать всю колоду или достаточно facelength?
+
             facePoint[(int)Face.Jack] = 2;
             facePoint[(int)Face.Qween] = 3;
             facePoint[(int)Face.King] = 4;
@@ -47,15 +43,14 @@ namespace Card_Game_21
             facePoint[(int)Face.Ten] = 10;
             facePoint[(int)Face.Ace] = 11;
 
-            int count = 0;
             for (int x = 0; x < suitLength; x++)
             {
                 for (int y = 0; y < faceLenght; y++)
                 {
-                    DeckOfCards[count].Suit = (Suit)x;
-                    DeckOfCards[count].Face = (Face)y;
-                    DeckOfCards[count].CardPoint = facePoint[y];
-                    count++;
+                    DeckOfCards[Count].Suit = (Suit)x;
+                    DeckOfCards[Count].Face = (Face)y;
+                    DeckOfCards[Count].CardPoint = facePoint[y];
+                    Count++;
                 }
             }
         }
@@ -77,7 +72,7 @@ namespace Card_Game_21
             {
                 if (i == DeckOfCards.Length - 1 && DeckOfCards.Length > 0)
                 {
-                   cards[a] = DeckOfCards[i];
+                    cards[a] = DeckOfCards[i];
                 }
             }
             return cards[a];
@@ -108,11 +103,9 @@ namespace Card_Game_21
         static void Main(string[] args)
         {
             Deck deck = new Deck();
-            Card[] cards = new Card[36];
             deck.GenerateDeck();
             deck.ShuffleDeck();
-            deck.TakeOneCard(cards);
-
+            deck.PrintDeck();
         }
     }
 }
