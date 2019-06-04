@@ -35,7 +35,7 @@ namespace Card_Game_21
         {
             int suitLength = Enum.GetNames(typeof(Suit)).Length;
             int faceLenght = Enum.GetNames(typeof(Face)).Length;
-            Card[] DeckOfCards = new Card[suitLength * faceLenght];
+            DeckOfCards = new Card[suitLength * faceLenght];
             int[] facePoint = new int[DeckOfCards.Length];
             facePoint[(int)Face.Jack] = 2;
             facePoint[(int)Face.Qween] = 3;
@@ -46,16 +46,15 @@ namespace Card_Game_21
             facePoint[(int)Face.Nine] = 9;
             facePoint[(int)Face.Ten] = 10;
             facePoint[(int)Face.Ace] = 11;
-
-            int count = 0;
+            Count = 0;
             for (int x = 0; x < suitLength; x++)
             {
                 for (int y = 0; y < faceLenght; y++)
                 {
-                    DeckOfCards[count].Suit = (Suit)x;
-                    DeckOfCards[count].Face = (Face)y;
-                    DeckOfCards[count].CardPoint = facePoint[y];
-                    count++;
+                    DeckOfCards[Count].Suit = (Suit)x;
+                    DeckOfCards[Count].Face = (Face)y;
+                    DeckOfCards[Count].CardPoint = facePoint[y];
+                    Count++;
                 }
             }
         }
