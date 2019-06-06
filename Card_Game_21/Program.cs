@@ -20,7 +20,7 @@ namespace Card_Game_21
         public Suit Suit;
         public Face Face;
         public int CardPoint;
-        public Card (Suit suit, Face face, int cardPoint)
+        public Card(Suit suit, Face face, int cardPoint)
         {
             Suit = suit;
             Face = face;
@@ -36,7 +36,8 @@ namespace Card_Game_21
         {
             int suitLength = Enum.GetNames(typeof(Suit)).Length;
             int faceLenght = Enum.GetNames(typeof(Face)).Length;
-            Card[] DeckOfCards = new Card[suitLength * faceLenght];
+
+            DeckOfCards = new Card[suitLength * faceLenght];
             int[] cardPoint = new int[DeckOfCards.Length];
 
             cardPoint[(int)Face.Jack] = 2;
@@ -49,20 +50,18 @@ namespace Card_Game_21
             cardPoint[(int)Face.Ten] = 10;
             cardPoint[(int)Face.Ace] = 11;
 
+
             for (int x = 0; x < suitLength; x++)
             {
                 for (int y = 0; y < faceLenght; y++)
                 {
-                    DeckOfCards[Count]=new Card((Suit)x, (Face)y, cardPoint[y]);
+                    DeckOfCards[Count] = new Card((Suit)x, (Face)y, cardPoint[y]);
                     Count++;
                 }
             }
         }
         public void ShuffleDeck()
         {
-
-
-
             for (int i = DeckOfCards.Length - 1; i >= 1; i--)
             {
                 Random random = new Random();
@@ -84,6 +83,7 @@ namespace Card_Game_21
             }
             return cards[a];
         }
+
         public void PrintDeck()
         {
             for (int i = 0; i < DeckOfCards.Length; i++)
@@ -113,6 +113,8 @@ namespace Card_Game_21
             deck.GenerateDeck();
             deck.ShuffleDeck();
             deck.PrintDeck();
+
+
         }
     }
 }
