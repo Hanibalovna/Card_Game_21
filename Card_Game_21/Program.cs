@@ -20,42 +20,47 @@ namespace Card_Game_21
         public Suit Suit;
         public Face Face;
         public int CardPoint;
-        public Card CardOne;
+        public Card (Suit suit, Face face, int cardPoint)
+        {
+            Suit = suit;
+            Face = face;
+            CardPoint = cardPoint;
+        }
     }
     class Deck
     {
         public Card[] DeckOfCards;
         public int Count = 0;
+
         public void GenerateDeck()
         {
             int suitLength = Enum.GetNames(typeof(Suit)).Length;
             int faceLenght = Enum.GetNames(typeof(Face)).Length;
             Card[] DeckOfCards = new Card[suitLength * faceLenght];
-            int[] facePoint = new int[DeckOfCards.Length];//нужно ли перебирать всю колоду или достаточно facelength?
+            int[] cardPoint = new int[DeckOfCards.Length];
 
-            facePoint[(int)Face.Jack] = 2;
-            facePoint[(int)Face.Qween] = 3;
-            facePoint[(int)Face.King] = 4;
-            facePoint[(int)Face.Six] = 6;
-            facePoint[(int)Face.Seven] = 7;
-            facePoint[(int)Face.Eight] = 8;
-            facePoint[(int)Face.Nine] = 9;
-            facePoint[(int)Face.Ten] = 10;
-            facePoint[(int)Face.Ace] = 11;
+            cardPoint[(int)Face.Jack] = 2;
+            cardPoint[(int)Face.Qween] = 3;
+            cardPoint[(int)Face.King] = 4;
+            cardPoint[(int)Face.Six] = 6;
+            cardPoint[(int)Face.Seven] = 7;
+            cardPoint[(int)Face.Eight] = 8;
+            cardPoint[(int)Face.Nine] = 9;
+            cardPoint[(int)Face.Ten] = 10;
+            cardPoint[(int)Face.Ace] = 11;
 
             for (int x = 0; x < suitLength; x++)
             {
                 for (int y = 0; y < faceLenght; y++)
                 {
-                    DeckOfCards[Count].Suit = (Suit)x;
-                    DeckOfCards[Count].Face = (Face)y;
-                    DeckOfCards[Count].CardPoint = facePoint[y];
+                    DeckOfCards[Count]=new Card((Suit)x, (Face)y, cardPoint[y]);
                     Count++;
                 }
             }
         }
         public void ShuffleDeck()
         {
+
             for (int i = DeckOfCards.Length - 1; i >= 1; i--)
             {
                 Random random = new Random();
