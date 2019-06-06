@@ -61,6 +61,8 @@ namespace Card_Game_21
         public void ShuffleDeck()
         {
 
+
+
             for (int i = DeckOfCards.Length - 1; i >= 1; i--)
             {
                 Random random = new Random();
